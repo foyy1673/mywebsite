@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>Home | แผนกเทคโนโลยีธุรกิจดิจิทัล</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* สไตล์ปุ่มวงกลม */
+    .dot {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      margin: 0 4px;
+      background-color: white;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .dot.active {
+      background-color: red;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <h1>
+        <a href="https://www.aitc.ac.th/">
+          <img src="images/dasaw.png" alt="โลโก้" width="100" height="100">
+        </a>
+      </h1>
+      <h1>แผนกเทคโนโลยีธุรกิจดิจิทัล</h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">หน้าหลัก</a></li>
+          <li><a href="about.html">เกี่ยวกับแผนก</a></li>
+          <li><a href="staff.html">บุคลากร</a></li>
+          <li><a href="curriculum.html">หลักสูตร</a></li>
+          <li><a href="activities.html">ผลงาน & กิจกรรม</a></li>
+          <li><a href="career.html">เส้นทางอาชีพ</a></li>
+          <li><a href="news.html">ข่าวสาร</a></li>
+          <li><a href="contact.html">ติดต่อเรา</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  
+  <!-- สไลด์ภาพ / ป้ายประชาสัมพันธ์ -->
+  <section style="position: relative; width: 100%; max-width: 100%; overflow: hidden; text-align:center;">
+    <img id="slide" src="images/slide1.jpg" width="100%" height="400" alt="สไลด์ประชาสัมพันธ์">
+
+    <!-- ปุ่มย้อนกลับ -->
+    <button onclick="prevSlide()" 
+            style="position:absolute; top:50%; left:10px; transform:translateY(-50%);
+                   background:rgba(0,0,0,0.5); color:white; border:none; padding:10px; cursor:pointer;">
+      ◀
+    </button>
+
+    <!-- ปุ่มถัดไป -->
+    <button onclick="nextSlide()" 
+            style="position:absolute; top:50%; right:10px; transform:translateY(-50%);
+                   background:rgba(0,0,0,0.5); color:white; border:none; padding:10px; cursor:pointer;">
+      ▶
+    </button>
+
+    <!-- ปุ่มวงกลมเลือกสไลด์ -->
+    <div id="dots" style="text-align:center; position:absolute; bottom:10px; width:100%;"></div>
+  </section>
+
+  <script>
+    // รายการรูปภาพสไลด์
+    var slides = [
+      "images/slide1.jpg",
+      "images/slide2.jpg",
+      "images/slide3.jpg",
+      "images/slide4.jpg",
+      "images/slide5.jpg",
+      "images/slide6.jpg",
+      "images/slide7.jpg",
+      "images/slide8.jpg",
+      "images/slide9.jpg",
+      "images/slide10.jpg",
+      "images/slide11.jpg",
+      "images/slide12.gif",
+      "images/slide13.jpg"
+    ];
+
+    var index = 0;
+    var slideImg = document.getElementById("slide");
+    var dotsContainer = document.getElementById("dots");
+    var dots = [];
+
+   // สร้างปุ่มวงกลมตามจำนวนสไลด์
+function createDots() {
+  for (var i = 0; i < slides.length; i++) {
+    (function(i) {
+      var dot = document.createElement("span");
+      dot.classList.add("dot");
+      if (i === 0) dot.classList.add("active");
+      dot.onclick = function() { showSlide(i); };
+      dotsContainer.appendChild(dot);
+      dots.push(dot);
+    })(i);
+  }
+}
+
+
+    // แสดงสไลด์
+    function showSlide(i) {
+      index = i;
+      if (index < 0) { index = slides.length - 1; }
+      if (index >= slides.length) { index = 0; }
+      slideImg.src = slides[index];
+      updateDots();
+    }
+
+    // อัพเดตสีจุด
+function updateDots() {
+  for (var i = 0; i < dots.length; i++) {
+    dots[i].classList.remove("active");
+  }
+  dots[index].classList.add("active");
+}
+
+
+    // ปุ่มถัดไป
+    function nextSlide() { showSlide(index + 1); }
+
+    // ปุ่มย้อนกลับ
+    function prevSlide() { showSlide(index - 1); }
+
+    // สไลด์อัตโนมัติ
+    setInterval(function() { nextSlide(); }, 5000);
+
+    // เริ่มต้น
+    createDots();
+  </script>
+
+  <!-- Main content (container + cards) -->
+  <div class="container">
+    <div class="card">
+      <i class="fas fa-handshake"></i>
+      <h2>คำต้อนรับ</h2>
+      <p>แผนกของเรามุ่งเน้นการพัฒนาความรู้และทักษะด้านเทคโนโลยีสารสนเทศและธุรกิจดิจิทัล เพื่อเตรียมความพร้อมนักศึกษาก้าวสู่โลกยุคดิจิทัลอย่างมั่นใจ ทั้งทฤษฎีและปฏิบัติจริง</p>
+      <img src="images/00.png" alt="นักศึกษากำลังเรียนรู้เทคโนโลยี" width="1003" height="473">
+    </div>
+    <div class="card">
+      <i class="fas fa-book-reader"></i>
+      <h2>สิ่งที่นักศึกษาจะได้เรียนรู้</h2>
+      <ul>
+        <li>เทคโนโลยีและซอฟต์แวร์ธุรกิจ</li>
+        <li>การวิเคราะห์ข้อมูลเชิงธุรกิจ</li>
+        <li>การพัฒนาธุรกิจดิจิทัลและนวัตกรรม</li>
+        <li>ทักษะการทำงานร่วมกันและแก้ปัญหาเชิงสร้างสรรค์</li>
+      </ul>
+      <img src="images/82.jpg" alt="นักศึกษากำลังทำโปรเจกต์กลุ่ม" width="1000" height="518">
+    </div>
+    <div class="card">
+      <i class="fas fa-trophy"></i>
+      <h2>เรื่องราวความสำเร็จของนักศึกษา</h2>
+      <ul>
+        <li>พัฒนาแอปพลิเคชันช่วยธุรกิจขนาดเล็ก</li>
+        <li>ชนะรางวัล Startup Pitch ด้านการตลาดดิจิทัล</li>
+        <li>งานวิจัยด้านการวิเคราะห์ข้อมูลธุรกิจถูกนำไปใช้จริง</li>
+      </ul>
+    <img src="images/75.jpg" alt="นักศึกษานำเสนอผลงาน" width="323" height="416"><img src="images/758.jpg" alt="นักศึกษานำเสนอผลงาน" width="323" height="416"></div>
+    <div class="card">
+      <i class="fas fa-rocket"></i>
+      <h2>กิจกรรมเด่นและโครงการ</h2>
+      <ul>
+        <li>เวิร์กชอปเทคโนโลยีล่าสุด</li>
+        <li>การแข่งขัน Hackathon / Coding Challenge</li>
+        <li>โครงการสหกิจศึกษาและฝึกงาน</li>
+        <li>กิจกรรมสร้างสตาร์ทอัพและธุรกิจดิจิทัล</li>
+      </ul>
+      <img src="images/nm.png" alt="กิจกรรม Hackathon ของนักศึกษา" width="1002" height="498">
+    </div>
+    <div class="card">
+      <i class="fas fa-handshake-alt"></i>
+      <h2>ความร่วมมือกับภาคธุรกิจ</h2>
+      <ul>
+        <li>ฝึกงานกับบริษัทเทคโนโลยีชั้นนำ</li>
+        <li>สัมมนาและบรรยายพิเศษโดยผู้เชี่ยวชาญ</li>
+        <li>โปรเจกต์ร่วมกับบริษัทเพื่อสร้างโซลูชันที่ใช้ได้จริง</li>
+      </ul>
+      <img src="images/fr.png" alt="นักศึกษาพบผู้เชี่ยวชาญ" width="1001" height="548">
+    </div>
+    <div class="card">
+      <i class="fas fa-bullseye"></i>
+      <h2>เป้าหมายของเรา</h2>
+      <p>เรามุ่งสร้างนักศึกษาที่มีความรู้รอบด้าน ความคิดสร้างสรรค์ และจิตสำนึกด้านความรับผิดชอบ พร้อมปรับตัวเข้ากับเทคโนโลยีใหม่ ๆ และแข่งขันในตลาดแรงงานทั้งในและต่างประเทศ</p>
+      <img src="images/36.jpg" alt="นักศึกษานำเสนอไอเดีย" width="983" height="660">
+      <a href="#" class="cta-button">สำรวจหลักสูตรเพิ่มเติม</a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 แผนกเทคโนโลยีธุรกิจดิจิทัล</p>
+  </footer>
+</body>
+</html>
